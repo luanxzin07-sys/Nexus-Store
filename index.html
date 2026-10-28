@@ -1,0 +1,1054 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="Nexus Store — catálogo demonstrativo de produtos digitais para Car Parking Multiplayer.">
+  <title>Nexus Store | Premium Gaming</title>
+
+  <style>
+    :root {
+      --bg: #090909;
+      --surface: #121212;
+      --surface-2: #191919;
+      --gold: #d6ad55;
+      --gold-light: #f5d98b;
+      --text: #f5f5f5;
+      --muted: #a5a5a5;
+      --border: #2c2c2c;
+      --danger: #ff7474;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible, input:focus-visible,
+    select:focus-visible, a:focus-visible {
+      outline: 2px solid var(--gold-light);
+      outline-offset: 3px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .demo-bar {
+      background: #332813;
+      color: #ffe6a3;
+      text-align: center;
+      padding: 9px 12px;
+      font-size: 12px;
+      letter-spacing: .2px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(9, 9, 9, .96);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      max-width: 1160px;
+      margin: auto;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      color: var(--gold);
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 4px;
+      font-weight: 600;
+    }
+
+    .cart-button {
+      background: var(--gold);
+      color: #111;
+      border: 0;
+      border-radius: 7px;
+      padding: 10px 15px;
+      font-weight: 800;
+    }
+
+    .hero {
+      max-width: 1160px;
+      margin: auto;
+      padding: 65px 22px 45px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 4px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 7vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
+
+    h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 530px;
+      margin: 0 auto 25px;
+      font-size: 15px;
+    }
+
+    .hero a {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 6px;
+      background: var(--gold);
+      color: #111;
+      font-weight: 800;
+    }
+
+    .notice {
+      max-width: 1160px;
+      margin: 0 auto 28px;
+      padding: 13px 16px;
+      border: 1px solid #554522;
+      background: #17130b;
+      border-radius: 8px;
+      color: #e9d8ad;
+      font-size: 12px;
+    }
+
+    main {
+      max-width: 1160px;
+      margin: auto;
+      padding: 0 22px 70px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 25px;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 190px;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .filters input, .filters select {
+      width: 100%;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 13px;
+      min-width: 0;
+    }
+
+    .filters select option {
+      background: var(--surface);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .product {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .product:hover {
+      border-color: #8b7139;
+      transform: translateY(-2px);
+    }
+
+    .product-art {
+      min-height: 145px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at center, #493819 0%, #211b10 32%, #101010 75%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .product-art::before {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border: 1px solid rgba(214, 173, 85, .2);
+      border-radius: 50%;
+    }
+
+    .product-icon {
+      z-index: 1;
+      color: var(--gold-light);
+      font-size: 46px;
+      font-weight: 900;
+      text-shadow: 0 0 24px #d6ad5570;
+    }
+
+    .demo-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #302713;
+      color: #ffe4a0;
+      padding: 5px 7px;
+      font-size: 9px;
+      letter-spacing: .6px;
+      border-radius: 4px;
+      z-index: 2;
+    }
+
+    .product-body {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .category-label {
+      color: var(--gold);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 7px;
+    }
+
+    .product h3 {
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    .product-description {
+      color: var(--muted);
+      font-size: 12px;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gold-light);
+      white-space: nowrap;
+    }
+
+    .add-button {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      border-radius: 5px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .add-button:hover {
+      background: var(--gold);
+      color: #111;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      text-align: center;
+      padding: 40px 10px;
+    }
+
+    .info-section {
+      margin-top: 55px;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+    }
+
+    .info-section p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .72);
+      z-index: 20;
+      opacity: 0;
+      visibility: hidden;
+      transition: .2s;
+    }
+
+    .overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-panel {
+      position: fixed;
+      z-index: 21;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: min(420px, 100%);
+      background: #101010;
+      border-left: 1px solid var(--border);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform .25s;
+    }
+
+    .cart-panel.open {
+      transform: translateX(0);
+    }
+
+    .cart-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .close-button {
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: white;
+      border-radius: 6px;
+      padding: 7px 11px;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 0;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item h4 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .cart-item p {
+      color: var(--gold-light);
+      font-size: 13px;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 8px;
+    }
+
+    .quantity button {
+      width: 27px;
+      height: 27px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: white;
+      border-radius: 5px;
+    }
+
+    .remove-button {
+      background: none;
+      border: none;
+      color: var(--danger);
+      font-size: 12px;
+      margin-top: 7px;
+    }
+
+    .cart-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+
+    .total-row strong {
+      color: var(--gold-light);
+      font-size: 23px;
+    }
+
+    .checkout {
+      width: 100%;
+      padding: 13px;
+      background: var(--gold);
+      border: 0;
+      border-radius: 6px;
+      color: #111;
+      font-weight: 900;
+    }
+
+    .checkout:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+
+    .cart-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translate(-50%, 20px);
+      background: #242015;
+      border: 1px solid var(--gold);
+      color: #fff0c6;
+      padding: 12px 17px;
+      border-radius: 7px;
+      z-index: 40;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s;
+      width: max-content;
+      max-width: 90%;
+      font-size: 13px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 760px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px;
+      }
+
+      .product-art {
+        min-height: 115px;
+      }
+
+      .product-body {
+        padding: 11px;
+      }
+
+      .product h3 {
+        font-size: 14px;
+      }
+
+      .price {
+        font-size: 15px;
+      }
+
+      .add-button {
+        padding: 7px;
+        font-size: 11px;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .notice {
+        margin-left: 22px;
+        margin-right: 22px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .filters {
+        grid-template-columns: 1fr;
+      }
+
+      .product-footer {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .add-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="demo-bar">
+    VERSÃO DE DEMONSTRAÇÃO · Produtos e preços fictícios
+  </div>
+
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#" aria-label="Nexus Store início">
+        NEXUS STORE
+        <span>PREMIUM GAMING</span>
+      </a>
+      <button class="cart-button" id="openCart" type="button">
+        🛒 Carrinho (<span id="cartCount">0</span>)
+      </button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">EXPERIÊNCIA PREMIUM</div>
+    <h1>SEU JOGO.<br><span>SEU PRÓXIMO NÍVEL.</span></h1>
+    <p>
+      Explore nosso catálogo demonstrativo de produtos digitais
+      para Car Parking Multiplayer.
+    </p>
+    <a href="#catalog">EXPLORAR CATÁLOGO</a>
+  </section>
+
+  <div class="notice">
+    <strong>⚠ Modo demonstração:</strong>
+    os produtos e valores abaixo são exemplos. Nenhuma compra ou
+    pagamento real é realizado por esta página.
+  </div>
+
+  <main>
+    <section id="catalog">
+      <div class="section-heading">
+        <div>
+          <h2>Catálogo</h2>
+          <p class="muted">Escolha seus produtos favoritos.</p>
+        </div>
+        <span class="muted" id="resultCount"></span>
+      </div>
+
+      <div class="filters">
+        <input
+          type="search"
+          id="search"
+          placeholder="Buscar produtos..."
+          aria-label="Buscar produtos"
+        >
+        <select id="category" aria-label="Filtrar por categoria">
+          <option value="todos">Todas as categorias</option>
+          <option value="carros">Carros</option>
+          <option value="recursos">Dinheiro e Gold</option>
+          <option value="contas">Contas</option>
+          <option value="servicos">Serviços</option>
+        </select>
+      </div>
+
+      <div class="grid" id="productGrid"></div>
+    </section>
+
+    <section class="info-section">
+      <h2>Por que Nexus Store?</h2>
+      <p>
+        Uma experiência de compra simples, com catálogo organizado
+        e atendimento pelo WhatsApp.
+      </p>
+      <p>
+        Esta é uma loja independente, sem afiliação oficial com os
+        desenvolvedores de Car Parking Multiplayer. A disponibilidade
+        e a legitimidade de cada produto devem ser verificadas antes
+        de qualquer venda real.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Nexus Store · Premium Gaming</p>
+    <p style="margin-top:6px">
+      Site demonstrativo. Nenhum pagamento é processado.
+    </p>
+  </footer>
+
+  <div class="overlay" id="overlay"></div>
+
+  <aside
+    class="cart-panel"
+    id="cartPanel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Seu carrinho"
+    aria-hidden="true"
+  >
+    <div class="cart-heading">
+      <div>
+        <h2>Seu carrinho</h2>
+        <p class="muted">Revise seu pedido</p>
+      </div>
+      <button class="close-button" id="closeCart" type="button">
+        Fechar ✕
+      </button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-bottom">
+      <div class="total-row">
+        <span>Subtotal</span>
+        <strong id="subtotal">R$ 0,00</strong>
+      </div>
+      <button class="checkout" id="checkout" type="button">
+        FINALIZAR PELO WHATSAPP
+      </button>
+      <p class="cart-note">
+        O botão prepara uma mensagem de pedido. Não confirma pagamento
+        nem garante disponibilidade dos produtos.
+      </p>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    "use strict";
+
+    // CONFIGURAÇÃO:
+    // Troque pelo WhatsApp comercial com código do país.
+    // Exemplo de formato: 5541999999999
+    // Não inclua +, espaços, parênteses ou traços.
+    const WHATSAPP_NUMBER = "5541999999999";
+
+    // PRODUTOS FICTÍCIOS PARA TESTAR O SITE.
+    // Altere nomes, preços e descrições antes de publicar.
+    const products = [
+      {
+        id: 1,
+        name: "Maserati MK20",
+        category: "carros",
+        categoryName: "Carros",
+        price: 5.00,
+        icon: "🏎",
+        description: "Exemplo de anúncio de veículo."
+      },
+      {
+        id: 2,
+        name: "Koenigsegg Gemera",
+        category: "carros",
+        categoryName: "Carros",
+        price: 9.00,
+        icon: "🚘",
+        description: "Produto demonstrativo, não disponível para compra."
+      },
+      {
+        id: 3,
+        name: "Pacote de Gold",
+        category: "recursos",
+        categoryName: "Dinheiro e Gold",
+        price: 2.00,
+        icon: "✦",
+        description: "Exemplo de pacote de recursos do jogo."
+      },
+      {
+        id: 4,
+        name: "Pacote de Dinheiro",
+        category: "recursos",
+        categoryName: "Dinheiro e Gold",
+        price: 4.00,
+        icon: "＄",
+        description: "Exemplo de anúncio de dinheiro virtual."
+      },
+      {
+        id: 5,
+        name: "Conta demonstrativa",
+        category: "contas",
+        categoryName: "Contas",
+        price: 15.00,
+        icon: "👑",
+        description: "Exemplo de anúncio de conta de jogo."
+      },
+      {
+        id: 6,
+        name: "Serviço personalizado",
+        category: "servicos",
+        categoryName: "Serviços",
+        price: 3.00,
+        icon: "⚙",
+        description: "Exemplo de serviço, sujeito a verificação."
+      }
+    ];
+
+    const cart = new Map();
+
+    const money = value => new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    }).format(value);
+
+    const grid = document.getElementById("productGrid");
+    const search = document.getElementById("search");
+    const category = document.getElementById("category");
+    const cartPanel = document.getElementById("cartPanel");
+    const overlay = document.getElementById("overlay");
+    const cartItems = document.getElementById("cartItems");
+    const cartCount = document.getElementById("cartCount");
+    const subtotal = document.getElementById("subtotal");
+    const checkout = document.getElementById("checkout");
+    const toast = document.getElementById("toast");
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2400);
+    }
+
+    function renderProducts() {
+      const term = search.value.trim().toLocaleLowerCase("pt-BR");
+      const selected = category.value;
+
+      const filtered = products.filter(product => {
+        const matchesCategory =
+          selected === "todos" || product.category === selected;
+
+        const matchesSearch =
+          (product.name + " " + product.description + " " +
+           product.categoryName)
+          .toLocaleLowerCase("pt-BR")
+          .includes(term);
+
+        return matchesCategory && matchesSearch;
+      });
+
+      document.getElementById("resultCount").textContent =
+        filtered.length + (filtered.length === 1
+          ? " produto" : " produtos");
+
+      grid.replaceChildren();
+
+      if (!filtered.length) {
+        const empty = document.createElement("p");
+        empty.className = "empty";
+        empty.textContent = "Nenhum produto encontrado.";
+        grid.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach(product => {
+        const card = document.createElement("article");
+        card.className = "product";
+
+        const art = document.createElement("div");
+        art.className = "product-art";
+
+        const tag = document.createElement("span");
+        tag.className = "demo-tag";
+        tag.textContent = "DEMONSTRAÇÃO";
+
+        const icon = document.createElement("span");
+        icon.className = "product-icon";
+        icon.textContent = product.icon;
+        icon.setAttribute("aria-hidden", "true");
+
+        art.append(tag, icon);
+
+        const body = document.createElement("div");
+        body.className = "product-body";
+
+        const label = document.createElement("p");
+        label.className = "category-label";
+        label.textContent = product.categoryName;
+
+        const name = document.createElement("h3");
+        name.textContent = product.name;
+
+        const description = document.createElement("p");
+        description.className = "product-description";
+        description.textContent = product.description;
+
+        const footer = document.createElement("div");
+        footer.className = "product-footer";
+
+        const price = document.createElement("span");
+        price.className = "price";
+        price.textContent = money(product.price);
+
+        const add = document.createElement("button");
+        add.className = "add-button";
+        add.type = "button";
+        add.textContent = "Adicionar +";
+        add.setAttribute("aria-label", "Adicionar " + product.name);
+        add.addEventListener("click", () => addToCart(product.id));
+
+        footer.append(price, add);
+        body.append(label, name, description, footer);
+        card.append(art, body);
+        grid.appendChild(card);
+      });
+    }
+
+    function addToCart(id) {
+      const product = products.find(item => item.id === id);
+      if (!product) return;
+
+      const current = cart.get(id);
+      cart.set(id, {
+        product,
+        quantity: current ? current.quantity + 1 : 1
+      });
+
+      renderCart();
+      showToast("Produto adicionado ao carrinho.");
+    }
+
+    function changeQuantity(id, change) {
+      const item = cart.get(id);
+      if (!item) return;
+
+      const next = item.quantity + change;
+
+      if (next <= 0) {
+        cart.delete(id);
+      } else {
+        item.quantity = next;
+        cart.set(id, item);
+      }
+
+      renderCart();
+    }
+
+    function removeFromCart(id) {
+      cart.delete(id);
+      renderCart();
+    }
+
+    function renderCart() {
+      cartItems.replaceChildren();
+
+      let count = 0;
+      let total = 0;
+
+      cart.forEach(({ product, quantity }) => {
+        count += quantity;
+        total += product.price * quantity;
+
+        const row = document.createElement("div");
+        row.className = "cart-item";
+
+        const details = document.createElement("div");
+
+        const name = document.createElement("h4");
+        name.textContent = product.name;
+
+        const price = document.createElement("p");
+        price.textContent = money(product.price * quantity);
+
+        const controls = document.createElement("div");
+        controls.className = "quantity";
+
+        const minus = document.createElement("button");
+        minus.type = "button";
+        minus.textContent = "−";
+        minus.setAttribute("aria-label", "Diminuir quantidade");
+        minus.addEventListener("click", () =>
+          changeQuantity(product.id, -1));
+
+        const qty = document.createElement("span");
+        qty.textContent = String(quantity);
+
+        const plus = document.createElement("button");
+        plus.type = "button";
+        plus.textContent = "+";
+        plus.setAttribute("aria-label", "Aumentar quantidade");
+        plus.addEventListener("click", () =>
+          changeQuantity(product.id, 1));
+
+        controls.append(minus, qty, plus);
+
+        const remove = document.createElement("button");
+        remove.className = "remove-button";
+        remove.type = "button";
+        remove.textContent = "Remover";
+        remove.addEventListener("click", () =>
+          removeFromCart(product.id));
+
+        details.append(name, price, controls, remove);
+        row.appendChild(details);
+        cartItems.appendChild(row);
+      });
+
+      if (cart.size === 0) {
+        const empty = document.createElement("p");
+        empty.className = "empty";
+        empty.textContent = "Seu carrinho está vazio.";
+        cartItems.appendChild(empty);
+      }
+
+      cartCount.textContent = String(count);
+      subtotal.textContent = money(total);
+      checkout.disabled = cart.size === 0;
+    }
+
+    function openCart() {
+      cartPanel.classList.add("open");
+      overlay.classList.add("open");
+      cartPanel.setAttribute("aria-hidden", "false");
+      document.getElementById("closeCart").focus();
+    }
+
+    function closeCart() {
+      cartPanel.classList.remove("open");
+      overlay.classList.remove("open");
+      cartPanel.setAttribute("aria-hidden", "true");
+      document.getElementById("openCart").focus();
+    }
+
+    document.getElementById("openCart")
+      .addEventListener("click", openCart);
+
+    document.getElementById("closeCart")
+      .addEventListener("click", closeCart);
+
+    overlay.addEventListener("click", closeCart);
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && cartPanel.classList.contains("open")) {
+        closeCart();
+      }
+    });
+
+    search.addEventListener("input", renderProducts);
+    category.addEventListener("change", renderProducts);
+
+    checkout.addEventListener("click", () => {
+      if (cart.size === 0) return;
+
+      if (!/^\d{10,15}$/.test(WHATSAPP_NUMBER) ||
+          WHATSAPP_NUMBER === "5541999999999") {
+        showToast("Configure seu número comercial no código.");
+        return;
+      }
+
+      const lines = [];
+      let total = 0;
+
+      lines.push("Olá! Quero consultar este pedido da Nexus Store:");
+      lines.push("");
+      lines.push("PEDIDO DEMONSTRATIVO — AGUARDANDO CONFIRMAÇÃO");
+
+      cart.forEach(({ product, quantity }) => {
+        const lineTotal = product.price * quantity;
+        total += lineTotal;
+        lines.push(
+          "- " + product.name + " x" + quantity + " — " +
+          money(lineTotal)
+        );
+      });
+
+      lines.push("");
+      lines.push("Subtotal demonstrativo: " + money(total));
+      lines.push("");
+      lines.push(
+        "Se os produtos estiverem disponíveis, gostaria de receber " +
+        "as informações para continuar. Sei que este site não processa pagamentos."
+      );
+
+      const url = "https://wa.me/" + WHATSAPP_NUMBER +
+        "?text=" + encodeURIComponent(lines.join("\n"));
+
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+
+    renderProducts();
+    renderCart();
+  </script>
+</body>
+</html>
